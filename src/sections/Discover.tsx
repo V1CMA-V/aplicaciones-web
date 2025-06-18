@@ -3,12 +3,12 @@ import { CheckCircle } from 'lucide-react'
 
 export default function Discover() {
   return (
-    <section className="flex flex-col items-center justify-center w-full  py-10  mb-10">
-      <div className="flex flex-col md:flex-row items-center justify-between w-full  p-6 ">
-        <h2 className="text-4xl text-balance text-start tracking-tighter px-4 max-w-xl mx-auto font-bold ">
+    <section className="flex flex-col items-center justify-center w-full gap-8">
+      <div className="flex flex-col md:flex-row items-center justify-between w-full  py-6 ">
+        <h2 className="text-4xl text-balance text-start tracking-tighter px-4  font-bold flex-1">
           Descubre lo que <strong className="tracking-wider">ZALUD</strong> puede hacer por ti
         </h2>
-        <p className="text-balance text-xl w-full max-w-2xl mx-auto ">
+        <p className="text-balance text-xl   flex-1">
           Zalud es la plataforma ideal para nutriólogos, entrenadores y médicos. Organiza planes
           alimenticios, monitorea progreso físico, recibe comentarios y haz seguimiento
           personalizado en un solo lugar.
@@ -16,7 +16,7 @@ export default function Discover() {
       </div>
 
       {/* Grid mejorado */}
-      <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-4 md:grid-rows-[200px_minmax(300px,1fr)_100px] gap-4 mt-10 w-full ">
+      <div className="grid grid-cols-1 md:grid-cols-4  md:grid-rows-[200px_minmax(300px,1fr)] gap-4 w-full">
         {/* Bloque grande */}
         <GridItem
           imgUrl="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?q=80&w=1191&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

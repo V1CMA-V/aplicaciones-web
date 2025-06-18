@@ -3,7 +3,7 @@ import Hero from '@/sections/hero'
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center w-full max-w-[1600px] mx-auto">
+    <main className="flex flex-col items-center justify-center gap-28 w-full  lg:max-w-[1300px] mx-auto">
       <Hero />
 
       <Discover />
