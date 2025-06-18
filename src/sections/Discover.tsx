@@ -3,7 +3,7 @@ import { CheckCircle } from 'lucide-react'
 
 export default function Discover() {
   return (
-    <section className="flex flex-col items-center justify-center w-full  py-10 p-4 mb-10">
+    <section className="flex flex-col items-center justify-center w-full  py-10  mb-10">
       <div className="flex flex-col md:flex-row items-center justify-between w-full  p-6 ">
         <h2 className="text-4xl text-balance text-start tracking-tighter px-4 max-w-xl mx-auto font-bold ">
           Descubre lo que <strong className="tracking-wider">ZALUD</strong> puede hacer por ti
