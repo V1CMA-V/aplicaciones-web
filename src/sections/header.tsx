@@ -20,7 +20,7 @@ export function Header() {
       id="header-animation"
       className="sticky top-4 z-50 mx-auto flex h-20 w-full max-w-7xl rounded-2xl select-none items-center  sm:h-screen  md:h-20"
     >
-      <div className="relative flex justify-between px-6 py-4 md:w-full">
+      <div className="relative flex justify-between px-8 py-4 md:w-full">
         <Link href="/" className="flex items-center gap-2">
           <h3 className="text-2xl uppercase font-semibold tracking-widest ">Zalud</h3>
         </Link>
