@@ -30,11 +30,11 @@ export default function About() {
         {/* CardItem img */}
 
         <div className="px-8 py-6 bg-white rounded-lg flex flex-col items-center justify-center text-balance gap-4 transition-transform hover:scale-105 row-span-2 shadow-lg relative ">
-          <p>
+          <p className="text-lg">
             Nuestro objetivo es ayudar a los profesionales de la salud a ofrecer un mejor servicio a
             sus pacientes.
           </p>
-          <p>
+          <p className="text-lg">
             Con la mejor tecnología y herramientas, podrás ofrecer un servicio personalizado y de
             calidad.
           </p>
