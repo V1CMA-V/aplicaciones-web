@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import * as React from 'react'
 
-import { Button } from '@/components/ui/button'
+import ButtonLogin from '@/components/buttonLogin'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -108,11 +108,7 @@ export function Header() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <div>
-          <Button variant="outline" asChild>
-            <Link href="/login">Iniciar sesión</Link>
-          </Button>
-        </div>
+        <ButtonLogin />
       </div>
     </header>
   )
