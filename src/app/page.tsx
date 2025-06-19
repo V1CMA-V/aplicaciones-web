@@ -2,6 +2,7 @@ import About from '@/sections/about'
 import Discover from '@/sections/discover'
 import Hero from '@/sections/hero'
 import Pricing from '@/sections/prices'
+import Testimonies from '@/sections/testimonies'
 
 export default function Home() {
   return (
@@ -13,6 +14,8 @@ export default function Home() {
       <About />
 
       <Pricing />
+
+      <Testimonies />
     </main>
   )
 }

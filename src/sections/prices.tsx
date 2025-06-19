@@ -8,7 +8,7 @@ export default function Pricing() {
         description="Elige el plan que mejor se adapte a tus necesidades y comienza a disfrutar de todas las ventajas que ofrecemos."
       />
 
-      <div className="w-full grid grid-rows-[2fr_minmax(250px,1fr)] grid-cols-1 md:grid-cols-3 gap-6 px-4 md:px-8">
+      <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 px-4 md:px-8">
         {/* Plan Básico */}
         <div className="bg-white flex flex-col items-center justify-between rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 h-full">
           <div className="w-full py-5 overflow-hidden rounded-t-lg text-center bg-red-400">
