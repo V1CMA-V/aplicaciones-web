@@ -1,19 +1,20 @@
 import GridItem from '@/components/gridItem'
+import TitleSection from '@/components/titleSections'
 import { CheckCircle } from 'lucide-react'
 
 export default function Discover() {
   return (
     <section className="flex flex-col items-center justify-center w-full gap-8">
-      <div className="flex flex-col md:flex-row items-center justify-between w-full  py-6 ">
-        <h2 className="text-4xl text-balance text-start tracking-tighter px-4  font-bold flex-1">
-          Descubre lo que <strong className="tracking-wider">ZALUD</strong> puede hacer por ti
-        </h2>
-        <p className="text-balance text-xl   flex-1">
-          Zalud es la plataforma ideal para nutriólogos, entrenadores y médicos. Organiza planes
-          alimenticios, monitorea progreso físico, recibe comentarios y haz seguimiento
-          personalizado en un solo lugar.
-        </p>
-      </div>
+      <TitleSection
+        title="Descubre lo que Zalud puede hacer por ti"
+        description={
+          <>
+            Zalud es la plataforma ideal para nutriólogos, entrenadores y médicos. Organiza planes
+            alimenticios, monitorea progreso físico, recibe comentarios y haz seguimiento
+            personalizado en un solo lugar.
+          </>
+        }
+      ></TitleSection>
 
       {/* Grid mejorado */}
       <div className="grid grid-cols-1 md:grid-cols-4  md:grid-rows-[200px_minmax(300px,1fr)] gap-4 w-full">

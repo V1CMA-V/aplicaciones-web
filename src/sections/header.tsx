@@ -22,7 +22,9 @@ export function Header() {
     >
       <div className="relative flex justify-between px-8 py-4 md:w-full">
         <Link href="/" className="flex items-center gap-2">
-          <h3 className="text-2xl uppercase font-semibold tracking-widest ">Zalud</h3>
+          <h3 className="text-2xl uppercase font-semibold tracking-widest hover:scale-105 transition-transform">
+            Zalud
+          </h3>
         </Link>
 
         <NavigationMenu viewport={false} className="flex w-full items-center justify-between">
