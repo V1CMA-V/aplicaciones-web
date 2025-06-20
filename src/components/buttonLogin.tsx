@@ -5,7 +5,7 @@ export default function ButtonLogin() {
   return (
     <>
       <SignedOut>
-        <SignInButton mode="modal" signUpFallbackRedirectUrl={'/dashboard'}>
+        <SignInButton mode="modal" fallbackRedirectUrl="/newEspecialist">
           <Button className="cursor-pointer">Iniciar sesión</Button>
         </SignInButton>
       </SignedOut>

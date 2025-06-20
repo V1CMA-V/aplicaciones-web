@@ -1,16 +1,17 @@
-import { createBrowserClient } from '@supabase/ssr'
+'use client'
 
-import { auth } from '@clerk/nextjs/server'
+import { useSession } from '@clerk/nextjs'
+import { createClient } from '@supabase/supabase-js'
 
-export function createClient() {
-  return createBrowserClient(
+export default function createClientSupabase() {
+  const { session } = useSession()
+
+  return createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
-      // Supabase validará el token generado por Clerk
-      accessToken: async () => {
-        const session = await auth()
-        return session.getToken() // equivalente al token Supabase
+      async accessToken() {
+        return session?.getToken() ?? null
       },
     },
   )
