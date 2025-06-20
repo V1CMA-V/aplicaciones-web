@@ -1,4 +1,6 @@
 import '@/app/globals.css'
+import { dark } from '@clerk/themes'
+
 import { LayoutConditional } from '@/components/LayoutConditional'
 import Footer from '@/sections/footer'
 import { Header } from '@/sections/header'
@@ -28,7 +30,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
       <html lang="es">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <LayoutConditional header={<Header />} footer={<Footer />}>
