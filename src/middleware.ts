@@ -1,15 +1,32 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 
-const isProtectedRoute = createRouteMatcher(['/dashboard(.*)'])
+const isEspecialistaRoute = createRouteMatcher(['/dashboard/especialista(.*)'])
+const isPacienteRoute = createRouteMatcher(['/dashboard/paciente(.*)'])
 
 export default clerkMiddleware(async (auth, req) => {
-  if (isProtectedRoute(req)) await auth.protect()
+  if (isEspecialistaRoute(req)) {
+    await auth.protect((has) => {
+      return has({ role: 'admin' })
+    })
+    return
+  }
+
+  if (isPacienteRoute(req)) {
+    await auth.protect((has) => {
+      return has({ role: 'member' })
+    })
+    return
+  }
+
+  // Si es otra ruta protegida general en /dashboard, puedes aplicar protección genérica o personalizada
+  // await auth.protect(); // <- Solo si quieres proteger otras rutas
 })
+
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
+    // Ignorar archivos estáticos y rutas internas de Next.js
     '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    // Always run for API routes
+    // Siempre ejecutar en rutas API
     '/(api|trpc)(.*)',
   ],
 }
