@@ -1,27 +1,37 @@
 'use client'
 
 import { useSession } from '@clerk/nextjs'
+import { redirect } from 'next/navigation'
+import { useMemo } from 'react'
 
-export function PageRedirect({ data }: { data: object }) {
+function useUserId() {
   const { session } = useSession()
-  const userId = session?.user.id
+  return session?.user.id || null
+}
 
-  function searchInfo() {
-    if (!userId) {
-      console.error('User ID is not available')
-      return null
-    }
+export function PageRedirect<T extends { user_id: string }>({
+  data,
+  onFound,
+  onNotFound,
+}: {
+  data: T[]
+  onFound?: (info: T) => React.ReactNode
+  onNotFound?: () => React.ReactNode
+}) {
+  const userId = useUserId()
 
-    // Simulate a search operation, replace with actual logic
-    const userInfo = data.find((item: any) => item.user_id === userId)
+  const userInfo = useMemo(() => {
+    if (!userId) return null
+    return data.find((item) => item.user_id === userId) || null
+  }, [data, userId])
 
-    if (!userInfo) {
-      console.warn('No information found for the user')
-      return null
-    }
-
-    return userInfo
+  if (!userId) {
+    return <div>No user session available.</div>
   }
 
-  return <pre>{JSON.stringify(searchInfo(), null, 2)}</pre>
+  if (!userInfo) {
+    return onNotFound ? onNotFound() : <div>No information found for the user.</div>
+  }
+
+  redirect('/dashboard/especialista')
 }
