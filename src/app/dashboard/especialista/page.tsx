@@ -1,11 +1,16 @@
-export default function Homer() {
+import { ChartAreaInteractive } from '@/components/chart-area-interactive'
+import { DataTable } from '@/components/data-table'
+import { SectionCards } from '@/components/section-cards'
+import data from './data.json'
+
+export default function Page() {
   return (
-    <section>
-      <h1 className="text-2xl font-bold">Dashboard Especialista</h1>
-      <p className="mt-4">Esta es una ruta protegida que requiere autenticación.</p>
-      <p className="mt-2">
-        Aquí puedes acceder a tus tareas y otros datos específicos del especialista.
-      </p>
-    </section>
+    <>
+      <SectionCards />
+      <div className="px-4 lg:px-6">
+        <ChartAreaInteractive />
+      </div>
+      <DataTable data={data} />
+    </>
   )
 }
