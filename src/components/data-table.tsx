@@ -208,7 +208,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
   {
     accessorKey: 'objetivo',
-    header: () => <div className="w-full text-right">Objetivo</div>,
+    header: () => <div className="w-full text-center">Objetivo</div>,
     cell: ({ row }) => (
       <form
         onSubmit={(e) => {
@@ -220,11 +220,8 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
           })
         }}
       >
-        <Label htmlFor={`${row.original.id}-objetivo`} className="sr-only">
-          Objetivo
-        </Label>
         <Input
-          className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-24 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
+          className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-full border-transparent bg-transparent text-center shadow-none focus-visible:border dark:bg-transparent"
           defaultValue={row.original.objetivo}
           id={`${row.original.id}-objetivo`}
         />
@@ -233,7 +230,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
   {
     accessorKey: 'Peso',
-    header: () => <div className="w-full text-right">Peso (kg)</div>,
+    header: () => <div className="w-full text-center">Peso (kg)</div>,
     cell: ({ row }) => (
       <form
         onSubmit={(e) => {
@@ -245,9 +242,6 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
           })
         }}
       >
-        <Label htmlFor={`${row.original.id}-peso`} className="sr-only">
-          Peso
-        </Label>
         <Input
           className="hover:bg-input/30 focus-visible:bg-background dark:hover:bg-input/30 dark:focus-visible:bg-input/30 h-8 w-16 border-transparent bg-transparent text-right shadow-none focus-visible:border dark:bg-transparent"
           defaultValue={row.original.peso_actual}
@@ -258,12 +252,13 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
   {
     accessorKey: 'altura',
-    header: () => <div className="w-full text-right">Altura (cm)</div>,
-    cell: ({ row }) => <div className="text-right w-20">{row.original.altura}</div>,
+    header: () => <div className="w-full text-center">Altura (cm)</div>,
+    cell: ({ row }) => <div className="text-center w-20">{row.original.altura}</div>,
   },
   {
     accessorKey: 'imc',
-    header: 'IMC',
+    header: () => <div className="w-full text-center">IMC</div>,
+
     cell: ({ row }) => <div className="text-right w-20">{row.original.imc}</div>,
   },
   {

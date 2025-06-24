@@ -24,11 +24,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
+import { UserButton } from '@clerk/nextjs'
 
 const data = {
   navMain: [
     {
-      title: 'Home',
+      title: 'Inicio',
       url: '/dashboard/especialista',
       icon: IconHome,
     },
@@ -103,12 +104,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        {/* <UserButton
-          showName
-          appearance={{
-            baseTheme: neobrutalism,
-          }}
-        /> */}
+        <UserButton />
       </SidebarFooter>
     </Sidebar>
   )
