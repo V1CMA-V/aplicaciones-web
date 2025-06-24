@@ -26,7 +26,7 @@ export default function Home() {
 
     async function loadTasks() {
       setLoading(true)
-      const { data, error } = await client.from('patients').select()
+      const { data, error } = await client.from('recetas').select()
       console.log('Data loaded:', data)
       if (!error) setTasks(data)
       setLoading(false)
@@ -46,7 +46,7 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Patients</h1>
+      <h1>Recetas</h1>
 
       {loading && <p>Loading...</p>}
 
@@ -54,7 +54,7 @@ export default function Home() {
         tasks.length > 0 &&
         tasks.map((task: any) => <p key={task.id}>{task.nombre + ' ' + task.apellido}</p>)}
 
-      {!loading && tasks.length === 0 && <p>No patients found</p>}
+      {!loading && tasks.length === 0 && <p>No recetas found</p>}
 
       <form onSubmit={createTask}>
         <input
