@@ -100,6 +100,8 @@ import {
 } from '@/components/ui/table'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useIsMobile } from '@/hooks/use-mobile'
+import createClientSupabase from '@/lib/supabase/client'
+import Link from 'next/link'
 
 export const schema = z.object({
   id: z.number(),
@@ -583,8 +585,34 @@ const chartConfig = {
 
 function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
   const isMobile = useIsMobile()
-
   const fullName = `${item.nombre} ${item.apellido}`
+  const client = createClientSupabase()
+
+  async function updatePatientData(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+    const updatedData: any = Object.fromEntries(formData)
+    // Convertir valores a float y solo enviar campos válidos
+    const update: any = {}
+    if (updatedData.peso) update.peso_actual = parseFloat(updatedData.peso)
+    if (updatedData.altura) update.altura = parseFloat(updatedData.altura)
+    if (updatedData.imc) update.imc = parseFloat(updatedData.imc)
+    if (updatedData.objetivo) update.objetivo = updatedData.objetivo
+    if (updatedData.deuda) update.deuda = updatedData.deuda === 'TRUE' ? true : false
+    // Limpiar correo de espacios
+    const correo = (item.correo || '').trim()
+    const { error, data } = await client
+      .from('patients')
+      .update(update)
+      .eq('correo', correo)
+      .select()
+
+    if (!error) {
+      toast.success('Información actualizada correctamente')
+    } else {
+      toast.error('Error al actualizar la información')
+    }
+  }
 
   return (
     <Drawer direction={isMobile ? 'bottom' : 'right'}>
@@ -650,47 +678,48 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
               <Separator />
             </>
           )}
-          <form id="data-form" className="flex flex-col gap-4">
-            <div className="flex flex-col gap-3">
-              <Label htmlFor="nombre">Nombre</Label>
-              <Input id="nombre" defaultValue={fullName} />
-            </div>
+          <form id="data-form" className="flex flex-col gap-4" onSubmit={updatePatientData}>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-3">
                 <Label htmlFor="deuda">Deuda</Label>
-                <Select defaultValue={item.deuda}>
+                <Select name="deuda">
                   <SelectTrigger id="deuda" className="w-full">
-                    <SelectValue placeholder="Select a deuda" />
+                    <SelectValue placeholder="Selecciona una opción" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="true">Sin pagar</SelectItem>
-                    <SelectItem value="false">Pagado</SelectItem>
+                    <SelectItem value="TRUE">Sin pagar</SelectItem>
+                    <SelectItem value="FALSE">Pagado</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
               <div className="flex flex-col gap-3">
                 <Label htmlFor="peso">Peso</Label>
-                <Input id="peso" defaultValue={item.peso_actual} />
+                <Input id="peso" name="peso" defaultValue={item.peso_actual} />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-3">
                 <Label htmlFor="altura">Altura</Label>
-                <Input id="altura" defaultValue={item.altura} />
+                <Input id="altura" name="altura" defaultValue={item.altura} />
               </div>
               <div className="flex flex-col gap-3">
                 <Label htmlFor="imc">IMC</Label>
-                <Input id="imc" defaultValue={item.imc} />
+                <Input id="imc" name="imc" defaultValue={item.imc} />
               </div>
             </div>
           </form>
         </div>
         <DrawerFooter>
-          <Button id="data-form" type="submit">
-            Submit
+          <Link href={`/dashboard/especialista/pacientes/dieta/${item.id}`}>
+            <Button variant="outline" className="w-full">
+              Agregar dieta
+            </Button>
+          </Link>
+          <Button id="data-form" type="submit" form="data-form">
+            Actualizar información
           </Button>
           <DrawerClose asChild>
-            <Button variant="outline">Done</Button>
+            <Button variant="outline">Cancelar</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
