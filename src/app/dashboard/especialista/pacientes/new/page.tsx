@@ -6,7 +6,8 @@ export default function Page() {
       <h1 className="text-2xl font-bold">Agregar a nuevo Paciente</h1>
       <p className="text-lg">
         Necesitaremos algunos datos para poder crear el perfil del paciente.
-        <strong>zalud</strong> te ayudara a gestionar tu agenda y pacientes.
+        <br />
+        Una vez creado, <strong>zalud</strong> te ayudara a gestionar tu agenda y pacientes.
       </p>
 
       <div className="w-full max-w-7xl m-auto ">
