@@ -83,8 +83,6 @@ export function RegisterPatient() {
   }, [form])
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log('Datos del formulario:', data)
-
     const { error } = await supabase.from('patients').insert({
       correo: data.correo,
       nombre: data.nombre,

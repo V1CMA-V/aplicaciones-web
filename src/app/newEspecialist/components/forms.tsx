@@ -87,8 +87,6 @@ export function InputForm({
   }, [nombre, apellido, correo, foto_perfil, form])
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    console.log('Datos del formulario:', data)
-
     const { error } = await supabase.from('specialists').insert({
       nombre: data.nombre,
       apellido: data.apellido,
