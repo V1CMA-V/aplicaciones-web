@@ -6,11 +6,6 @@ import { SectionCards } from '@/components/section-cards'
 import createClientSupabase from '@/lib/supabase/client'
 import { useUser } from '@clerk/nextjs'
 import { useEffect, useState } from 'react'
-import data from './data.json'
-
-// const PatientsStructure = [
-//   { id: 'id', label: 'ID', type: 'number' },
-// ]
 
 export default function Page() {
   const [patients, setPatients] = useState<any[]>([])
@@ -48,6 +43,13 @@ export default function Page() {
   const patientsOnDebt = patients.filter((p) => p.deuda).length
   const patientsCritical = patients.filter((p) => p.critico).length
 
+  // Char Area Interactive
+  const dataChartArea = patients.map((patient) => ({
+    date: patient.fecha_inicio,
+    peso_actual: patient.peso_actual,
+    imc: patient.imc,
+  }))
+
   // Mostrar mensaje de carga
   if (loading) {
     return <p className="text-center text-gray-500">Cargando pacientes...</p>
@@ -62,9 +64,9 @@ export default function Page() {
         patientsCritical={patientsCritical}
       />
       <div className="px-4 lg:px-6">
-        <ChartAreaInteractive />
+        <ChartAreaInteractive chartData={dataChartArea} />
       </div>
-      <DataTable data={data} />
+      <DataTable data={patients} />
     </>
   )
 }
