@@ -53,6 +53,7 @@ import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
+import { AddCita } from '@/app/dashboard/especialista/pacientes/components/addCita'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -609,6 +610,7 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
 
     if (!error) {
       toast.success('Información actualizada correctamente')
+      window.location.reload()
     } else {
       toast.error('Error al actualizar la información')
     }
@@ -710,14 +712,17 @@ function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
           </form>
         </div>
         <DrawerFooter>
+          <Button id="data-form" type="submit" form="data-form">
+            Actualizar información
+          </Button>
+
+          <AddCita pacienteId={item.id.toString()} />
+
           <Link href={`/dashboard/especialista/pacientes/dieta/${item.id}`}>
             <Button variant="outline" className="w-full">
               Agregar dieta
             </Button>
           </Link>
-          <Button id="data-form" type="submit" form="data-form">
-            Actualizar información
-          </Button>
           <DrawerClose asChild>
             <Button variant="outline">Cancelar</Button>
           </DrawerClose>
