@@ -44,8 +44,8 @@ const data = {
       icon: IconListDetails,
     },
     {
-      title: 'Progreso',
-      url: '/dashboard/especialista/progreso',
+      title: 'Citas',
+      url: '/dashboard/especialista/citas',
       icon: IconChartBar,
     },
   ],
