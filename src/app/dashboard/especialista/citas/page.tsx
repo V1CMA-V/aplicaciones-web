@@ -46,9 +46,6 @@ export default function CitasPage() {
 
   const disabledDays = citas.map((cita) => new Date(cita.fecha_hora))
 
-  // Mostrar mensaje de carga
-  console.log('Citas:', citas)
-
   return (
     <section className="flex flex-col gap-4 w-full max-w-6xl m-auto items-center justify-center">
       <h1 className="text-2xl font-bold text-center">Todas las citas</h1>
