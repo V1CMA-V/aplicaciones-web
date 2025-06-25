@@ -22,8 +22,6 @@ export default function Home() {
   useEffect(() => {
     if (!user) return
 
-    console.log('User loaded:', user)
-
     async function loadTasks() {
       setLoading(true)
       const { data, error } = await client.from('recetas').select()
